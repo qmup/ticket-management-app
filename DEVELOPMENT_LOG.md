@@ -1,116 +1,87 @@
 # Development Log - Ticket Management App
 
-## Tech Stack Decisions & Rationale
+## Project Overview
 
-### State Management: Zustand
+A modern ticket management application built with React, TypeScript, and modern tooling. This project demonstrates clean architecture, state management, and responsive design.
 
-**Tại sao chọn Zustand?**
+## Tech Stack
 
-- **Lightweight**: Chỉ ~2KB, không cần boilerplate như Redux
-- **TypeScript-first**: Excellent TypeScript support out of the box
-- **Simple API**: Dễ học và sử dụng, không cần Provider wrapping
-- **Performance**: Chỉ re-render components khi state thực sự thay đổi
-- **Perfect for small-medium apps**: Phù hợp với scope của assignment này
+- **Frontend**: React 18 + TypeScript
+- **State Management**: Zustand
+- **Data Fetching**: React Query (TanStack Query)
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Routing**: React Router
+- **Testing**: Jest + React Testing Library
 
-### Data Fetching: React Query (TanStack Query)
+## Implementation Steps
 
-**Tại sao chọn React Query?**
+### ✅ Step 1: Dependencies & Configuration
 
-- **Caching**: Tự động cache data, tránh duplicate requests
-- **Background updates**: Tự động refetch data khi cần
-- **Loading states**: Built-in loading, error states
-- **Optimistic updates**: Hỗ trợ update UI trước khi API response
-- **Race condition handling**: Xử lý tốt các trường hợp user click nhanh
-- **Perfect với artificial delay**: API có intentional delay, React Query sẽ handle tốt
+- [STEP_1_DEPENDENCIES.md](./STEP_1_DEPENDENCIES.md)
+- Setup foundational dependencies
+- Configure Tailwind CSS and shadcn/ui
+- Create utility functions and basic components
 
-### Styling: Tailwind CSS + shadcn/ui
+### 🔄 Step 2: State Management & API Layer
 
-**Tại sao chọn combo này?**
+- [STEP_2_STATE_MANAGEMENT.md](./STEP_2_STATE_MANAGEMENT.md)
+- Setup Zustand stores
+- Configure React Query
+- Create API service layer
 
-- **Tailwind CSS**: Utility-first, responsive design dễ dàng, consistent spacing/colors
-- **shadcn/ui**:
-  - Copy-paste components (không phải npm dependency)
-  - Built on Radix UI (accessibility-first)
-  - Fully customizable với Tailwind
-  - TypeScript support
-  - Modern, professional look
+### ⏳ Step 3: UI Components
 
-### Routing: React Router (đã có sẵn)
+- [STEP_3_UI_COMPONENTS.md](./STEP_3_UI_COMPONENTS.md)
+- Build responsive components
+- Implement modern UX patterns
 
-- Đã được setup trong project
-- Phù hợp cho 2 screens: list và detail
+### ⏳ Step 4: Core Features
 
-## Implementation Plan
-
-### Step 1: Dependencies & Configuration ✅
-
-- Install required packages
-- Configure Tailwind CSS
-- Setup shadcn/ui
-
-### Step 2: State Management & API Layer
-
-- Create Zustand stores
-- Setup React Query
-- Create API hooks
-
-### Step 3: UI Components
-
-- Build components với shadcn/ui
-- Implement responsive design
-
-### Step 4: Core Features
-
+- [STEP_4_CORE_FEATURES.md](./STEP_4_CORE_FEATURES.md)
 - CRUD operations
-- Filtering
-- Assignment functionality
+- Filtering and assignment
+- Completion functionality
 
-### Step 5: Testing & Polish
+### ⏳ Step 5: Testing & Polish
 
-- Write tests
-- Final UI improvements
+- [STEP_5_TESTING.md](./STEP_5_TESTING.md)
+- Comprehensive testing
+- UI/UX improvements
+- Final polish
 
----
+## Architecture Decisions
 
-## Step 1: Dependencies & Configuration
+### Why Zustand over Redux?
 
-### Installing Dependencies
+- **Simplicity**: No boilerplate, easy to learn
+- **Performance**: Minimal re-renders
+- **TypeScript**: Excellent type safety
+- **Bundle size**: Only ~2KB
 
-```bash
-# State management
-yarn add zustand
+### Why React Query?
 
-# Data fetching
-yarn add @tanstack/react-query
+- **Caching**: Automatic data caching
+- **Background updates**: Fresh data without user intervention
+- **Loading states**: Built-in loading and error handling
+- **Race conditions**: Handles rapid user interactions
+- **Perfect for APIs with delays**: Handles the intentional API delays
 
-# Styling
-yarn add -D tailwindcss postcss autoprefixer
-yarn add class-variance-authority clsx tailwind-merge
+### Why Tailwind + shadcn/ui?
 
-# shadcn/ui dependencies
-yarn add @radix-ui/react-slot
-yarn add lucide-react
-```
+- **Rapid development**: Utility-first CSS
+- **Consistency**: Design system approach
+- **Responsive**: Mobile-first design
+- **Accessibility**: Radix UI foundation
+- **Customizable**: Easy to modify and extend
 
-### Why these specific packages?
+## Repository
 
-- **@tanstack/react-query**: Latest version of React Query
-- **class-variance-authority**: For component variants (shadcn/ui requirement)
-- **clsx & tailwind-merge**: Utility functions for conditional classes
-- **@radix-ui/react-slot**: Base component for shadcn/ui
-- **lucide-react**: Icon library used by shadcn/ui
+- **GitHub**: [https://github.com/qmup/ticket-management-app](https://github.com/qmup/ticket-management-app)
+- **Conventional Commits**: Using `feat:`, `fix:`, `docs:` prefixes
 
-### Configuration Files Created
+## Development Notes
 
-1. **tailwind.config.js**: Configured to scan client/src for Tailwind classes
-2. **postcss.config.js**: Setup PostCSS with Tailwind and Autoprefixer
-3. **client/src/styles.css**: Added Tailwind directives
-4. **client/src/lib/utils.ts**: Utility function for class merging (shadcn/ui standard)
-5. **Basic shadcn/ui components**: Button, Card, Input components
-
-### Why this setup?
-
-- **Tailwind CSS**: Utility-first approach, perfect for rapid prototyping
-- **shadcn/ui components**: Copy-paste approach means no bundle bloat
-- **TypeScript support**: All components are fully typed
-- **Responsive by default**: Tailwind's mobile-first approach
+- Each step is documented in separate markdown files
+- Commits follow conventional commit format
+- Code is fully typed with TypeScript
+- Responsive design for mobile, tablet, and desktop
