@@ -35,29 +35,31 @@ describe('TicketForm', () => {
   it('opens form when add button is clicked', async () => {
     const user = userEvent.setup();
     render(<TicketForm />, { wrapper: createWrapper() });
-    
+
     await user.click(screen.getByText('Add New Ticket'));
-    
+
     expect(screen.getByText('Add New Ticket')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Enter ticket description...')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('Enter ticket description...'),
+    ).toBeInTheDocument();
   });
 
   it('closes form when cancel is clicked', async () => {
     const user = userEvent.setup();
     render(<TicketForm />, { wrapper: createWrapper() });
-    
+
     await user.click(screen.getByText('Add New Ticket'));
     await user.click(screen.getByText('Cancel'));
-    
+
     expect(screen.getByText('Add New Ticket')).toBeInTheDocument();
   });
 
   it('disables submit button when description is empty', async () => {
     const user = userEvent.setup();
     render(<TicketForm />, { wrapper: createWrapper() });
-    
+
     await user.click(screen.getByText('Add New Ticket'));
-    
+
     const submitButton = screen.getByText('Create Ticket');
     expect(submitButton).toBeDisabled();
   });
@@ -65,10 +67,13 @@ describe('TicketForm', () => {
   it('enables submit button when description is provided', async () => {
     const user = userEvent.setup();
     render(<TicketForm />, { wrapper: createWrapper() });
-    
+
     await user.click(screen.getByText('Add New Ticket'));
-    await user.type(screen.getByPlaceholderText('Enter ticket description...'), 'Test ticket');
-    
+    await user.type(
+      screen.getByPlaceholderText('Enter ticket description...'),
+      'Test ticket',
+    );
+
     const submitButton = screen.getByText('Create Ticket');
     expect(submitButton).not.toBeDisabled();
   });
