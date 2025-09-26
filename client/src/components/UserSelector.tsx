@@ -28,6 +28,7 @@ export function UserSelector({
             variant="outline"
             size="sm"
             onClick={() => onUserSelect(null)}
+            className="cursor-pointer"
           >
             Unassign
           </Button>
@@ -40,6 +41,7 @@ export function UserSelector({
               variant="outline"
               size="sm"
               onClick={() => onUserSelect(user.id)}
+              className="cursor-pointer"
             >
               {user.name}
             </Button>

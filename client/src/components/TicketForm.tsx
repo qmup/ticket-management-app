@@ -25,7 +25,7 @@ export function TicketForm() {
 
   if (!isOpen) {
     return (
-      <Button onClick={() => setIsOpen(true)} className="w-full">
+      <Button onClick={() => setIsOpen(true)} className="w-full cursor-pointer">
         <Plus className="h-4 w-4 mr-2" />
         Add New Ticket
       </Button>
@@ -49,6 +49,7 @@ export function TicketForm() {
             <Button 
               type="submit" 
               disabled={createTicket.isPending || !description.trim()}
+              className="cursor-pointer"
             >
               {createTicket.isPending ? 'Creating...' : 'Create Ticket'}
             </Button>
@@ -59,6 +60,7 @@ export function TicketForm() {
                 setIsOpen(false);
                 setDescription('');
               }}
+              className="cursor-pointer"
             >
               Cancel
             </Button>
