@@ -27,7 +27,9 @@ export function TicketList({ tickets, isLoading, error }: TicketListProps) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <h3 className="text-lg font-semibold text-red-600 mb-2">Error Loading Tickets</h3>
+          <h3 className="text-lg font-semibold text-red-600 mb-2">
+            Error Loading Tickets
+          </h3>
           <p className="text-gray-600">{error.message}</p>
         </div>
       </div>
@@ -37,18 +39,19 @@ export function TicketList({ tickets, isLoading, error }: TicketListProps) {
   return (
     <div className="space-y-6">
       <FilterBar />
-      
+
       <TicketForm />
-      
+
       <div className="space-y-4">
         {filteredTickets.length === 0 ? (
           <div className="text-center py-12">
-            <h3 className="text-lg font-semibold text-gray-600 mb-2">No tickets found</h3>
+            <h3 className="text-lg font-semibold text-gray-600 mb-2">
+              No tickets found
+            </h3>
             <p className="text-gray-500">
-              {tickets.length === 0 
-                ? 'Create your first ticket above!' 
-                : 'Try adjusting your filters or search terms.'
-              }
+              {tickets.length === 0
+                ? 'Create your first ticket above!'
+                : 'Try adjusting your filters or search terms.'}
             </p>
           </div>
         ) : (
