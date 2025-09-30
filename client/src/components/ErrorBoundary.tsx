@@ -65,11 +65,18 @@ export class ErrorBoundary extends Component<Props, State> {
                   </details>
                 )}
               <div className="flex gap-2 justify-center">
-                <Button onClick={this.handleReset} variant="outline" className="cursor-pointer">
+                <Button
+                  onClick={this.handleReset}
+                  variant="outline"
+                  className="cursor-pointer"
+                >
                   <RefreshCw className="h-4 w-4 mr-2" />
                   Try Again
                 </Button>
-                <Button onClick={() => window.location.reload()} className="cursor-pointer">
+                <Button
+                  onClick={() => window.location.reload()}
+                  className="cursor-pointer"
+                >
                   Refresh Page
                 </Button>
               </div>

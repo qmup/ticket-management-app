@@ -46,16 +46,16 @@ export function TicketForm() {
             required
           />
           <div className="flex gap-2">
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               disabled={createTicket.isPending || !description.trim()}
               className="cursor-pointer"
             >
               {createTicket.isPending ? 'Creating...' : 'Create Ticket'}
             </Button>
-            <Button 
-              type="button" 
-              variant="outline" 
+            <Button
+              type="button"
+              variant="outline"
               onClick={() => {
                 setIsOpen(false);
                 setDescription('');

@@ -104,7 +104,11 @@ export function TicketCard({ ticket }: TicketCardProps) {
 
         <div className="pt-2 border-t">
           <Link to={`/${ticket.id}`}>
-            <Button variant="outline" size="sm" className="w-full cursor-pointer">
+            <Button
+              variant="outline"
+              size="sm"
+              className="w-full cursor-pointer"
+            >
               <Eye className="h-4 w-4 mr-2" />
               View Details
             </Button>

@@ -11,14 +11,15 @@ import { useUsersStore } from '../stores/usersStore';
 export function TicketDetails() {
   const { id } = useParams<{ id: string }>();
   const ticketId = id ? parseInt(id, 10) : 0;
-  
+
   const { data: ticket, isLoading, error } = useTicket(ticketId);
-  const { assignTicket, unassignTicket, completeTicket, incompleteTicket } = useTicketMutations();
+  const { assignTicket, unassignTicket, completeTicket, incompleteTicket } =
+    useTicketMutations();
   const { getUserById } = useUsersStore();
 
   const handleAssign = async (userId: number | null) => {
     if (!ticket) return;
-    
+
     try {
       if (userId) {
         await assignTicket.mutateAsync({ ticketId: ticket.id, userId });
@@ -32,7 +33,7 @@ export function TicketDetails() {
 
   const handleToggleComplete = async () => {
     if (!ticket) return;
-    
+
     try {
       if (ticket.completed) {
         await incompleteTicket.mutateAsync(ticket.id);
@@ -56,7 +57,9 @@ export function TicketDetails() {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <h3 className="text-lg font-semibold text-red-600 mb-2">Ticket Not Found</h3>
+          <h3 className="text-lg font-semibold text-red-600 mb-2">
+            Ticket Not Found
+          </h3>
           <p className="text-gray-600 mb-4">
             {error?.message || 'The ticket you are looking for does not exist.'}
           </p>
@@ -88,7 +91,11 @@ export function TicketDetails() {
       <Card>
         <CardHeader>
           <div className="flex items-start justify-between">
-            <CardTitle className={`text-xl ${ticket.completed ? 'line-through text-gray-500' : ''}`}>
+            <CardTitle
+              className={`text-xl ${
+                ticket.completed ? 'line-through text-gray-500' : ''
+              }`}
+            >
               {ticket.description}
             </CardTitle>
             <Button
@@ -117,12 +124,16 @@ export function TicketDetails() {
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-2">
               <Calendar className="h-5 w-5 text-gray-400" />
               <div>
                 <p className="text-sm text-gray-600">Status</p>
-                <p className={`font-medium ${ticket.completed ? 'text-green-600' : 'text-orange-600'}`}>
+                <p
+                  className={`font-medium ${
+                    ticket.completed ? 'text-green-600' : 'text-orange-600'
+                  }`}
+                >
                   {ticket.completed ? 'Completed' : 'In Progress'}
                 </p>
               </div>
