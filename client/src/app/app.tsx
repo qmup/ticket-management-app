@@ -1,36 +1,54 @@
-import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Ticket, User } from '@acme/shared-models';
+import { useTickets } from '../hooks/useTickets';
+import { useUsers } from '../hooks/useUsers';
 
 import styles from './app.module.css';
 import Tickets from './tickets/tickets';
 
 const App = () => {
-  const [tickets, setTickets] = useState([] as Ticket[]);
-  const [users, setUsers] = useState([] as User[]);
+  // Initialize data fetching with React Query
+  const {
+    data: tickets,
+    isLoading: ticketsLoading,
+    error: ticketsError,
+  } = useTickets();
+  const {
+    data: users,
+    isLoading: usersLoading,
+    error: usersError,
+  } = useUsers();
 
-  // Very basic way to synchronize state with server.
-  // Feel free to use any state/fetch library you want (e.g. react-query, xstate, redux, etc.).
-  useEffect(() => {
-    async function fetchTickets() {
-      const data = await fetch('/api/tickets').then();
-      setTickets(await data.json());
-    }
+  // Show loading state
+  if (ticketsLoading || usersLoading) {
+    return (
+      <div className={styles['app']}>
+        <h1>Ticketing App</h1>
+        <div className="flex items-center justify-center p-8">
+          <div className="text-lg">Loading...</div>
+        </div>
+      </div>
+    );
+  }
 
-    async function fetchUsers() {
-      const data = await fetch('/api/users').then();
-      setUsers(await data.json());
-    }
-
-    fetchTickets();
-    fetchUsers();
-  }, []);
+  // Show error state
+  if (ticketsError || usersError) {
+    return (
+      <div className={styles['app']}>
+        <h1>Ticketing App</h1>
+        <div className="flex items-center justify-center p-8">
+          <div className="text-lg text-red-600">
+            Error loading data: {ticketsError?.message || usersError?.message}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles['app']}>
       <h1>Ticketing App</h1>
       <Routes>
-        <Route path="/" element={<Tickets tickets={tickets} />} />
+        <Route path="/" element={<Tickets tickets={tickets || []} />} />
         {/* Hint: Try `npx nx g component TicketDetails --project=client --no-export` to generate this component  */}
         <Route path="/:id" element={<h2>Details Not Implemented</h2>} />
       </Routes>
