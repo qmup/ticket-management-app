@@ -16,7 +16,10 @@ export function LoadingSpinner({
   };
 
   return (
-    <div className={`flex items-center justify-center ${className}`}>
+    <div 
+      className={`flex items-center justify-center ${className}`}
+      data-testid="loading-spinner"
+    >
       <Loader2 className={`animate-spin ${sizeClasses[size]}`} />
     </div>
   );
