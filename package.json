@@ -39,6 +39,7 @@
     "@svgr/webpack": "^6.1.2",
     "@swc/core": "~1.2.143",
     "@swc/jest": "0.2.20",
+    "@tailwindcss/postcss": "^4.1.13",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "13.4.0",
