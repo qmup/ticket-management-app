@@ -12,7 +12,8 @@ interface TicketCardProps {
 }
 
 export function TicketCard({ ticket }: TicketCardProps) {
-  const { assignTicket, unassignTicket, completeTicket, incompleteTicket } = useTicketMutations();
+  const { assignTicket, unassignTicket, completeTicket, incompleteTicket } =
+    useTicketMutations();
   const { getUserById } = useUsersStore();
   const assignee = getUserById(ticket.assigneeId || 0);
 
@@ -41,10 +42,18 @@ export function TicketCard({ ticket }: TicketCardProps) {
   };
 
   return (
-    <Card className={`transition-all hover:shadow-md ${ticket.completed ? 'opacity-75' : ''}`}>
+    <Card
+      className={`transition-all hover:shadow-md ${
+        ticket.completed ? 'opacity-75' : ''
+      }`}
+    >
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
-          <CardTitle className={`text-lg ${ticket.completed ? 'line-through text-gray-500' : ''}`}>
+          <CardTitle
+            className={`text-lg ${
+              ticket.completed ? 'line-through text-gray-500' : ''
+            }`}
+          >
             Ticket #{ticket.id}
           </CardTitle>
           <Button
@@ -52,6 +61,7 @@ export function TicketCard({ ticket }: TicketCardProps) {
             size="sm"
             onClick={handleToggleComplete}
             disabled={completeTicket.isPending || incompleteTicket.isPending}
+            className="cursor-pointer"
           >
             {ticket.completed ? (
               <CheckCircle className="h-5 w-5 text-green-600" />
@@ -62,21 +72,25 @@ export function TicketCard({ ticket }: TicketCardProps) {
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        <p className={`text-gray-700 ${ticket.completed ? 'line-through' : ''}`}>
+        <p
+          className={`text-gray-700 ${ticket.completed ? 'line-through' : ''}`}
+        >
           {ticket.description}
         </p>
-        
+
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <User className="h-4 w-4" />
-            <span>
-              {assignee ? assignee.name : 'Unassigned'}
-            </span>
+            <span>{assignee ? assignee.name : 'Unassigned'}</span>
           </div>
-          
+
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <Calendar className="h-4 w-4" />
-            <span className={ticket.completed ? 'text-green-600' : 'text-orange-600'}>
+            <span
+              className={
+                ticket.completed ? 'text-green-600' : 'text-orange-600'
+              }
+            >
               {ticket.completed ? 'Completed' : 'In Progress'}
             </span>
           </div>
@@ -90,7 +104,7 @@ export function TicketCard({ ticket }: TicketCardProps) {
 
         <div className="pt-2 border-t">
           <Link to={`/${ticket.id}`}>
-            <Button variant="outline" size="sm" className="w-full">
+            <Button variant="outline" size="sm" className="w-full cursor-pointer">
               <Eye className="h-4 w-4 mr-2" />
               View Details
             </Button>

@@ -61,7 +61,7 @@ export function TicketDetails() {
             {error?.message || 'The ticket you are looking for does not exist.'}
           </p>
           <Link to="/">
-            <Button>
+            <Button className="cursor-pointer">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Tickets
             </Button>
@@ -77,7 +77,7 @@ export function TicketDetails() {
     <div className="max-w-2xl mx-auto space-y-6">
       <div className="flex items-center gap-4">
         <Link to="/">
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="cursor-pointer">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Tickets
           </Button>
@@ -96,6 +96,7 @@ export function TicketDetails() {
               size="sm"
               onClick={handleToggleComplete}
               disabled={completeTicket.isPending || incompleteTicket.isPending}
+              className="cursor-pointer"
             >
               {ticket.completed ? (
                 <CheckCircle className="h-5 w-5 text-green-600" />
