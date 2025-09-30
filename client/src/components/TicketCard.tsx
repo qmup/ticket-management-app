@@ -1,5 +1,6 @@
 import { Ticket } from '@acme/shared-models';
-import { CheckCircle, Circle, User, Calendar } from 'lucide-react';
+import { CheckCircle, Circle, User, Calendar, Eye } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { UserSelector } from './UserSelector';
@@ -86,6 +87,15 @@ export function TicketCard({ ticket }: TicketCardProps) {
           onUserSelect={handleAssign}
           ticketId={ticket.id}
         />
+
+        <div className="pt-2 border-t">
+          <Link to={`/${ticket.id}`}>
+            <Button variant="outline" size="sm" className="w-full">
+              <Eye className="h-4 w-4 mr-2" />
+              View Details
+            </Button>
+          </Link>
+        </div>
       </CardContent>
     </Card>
   );
