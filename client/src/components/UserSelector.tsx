@@ -8,9 +8,13 @@ interface UserSelectorProps {
   ticketId: number;
 }
 
-export function UserSelector({ selectedUserId, onUserSelect, ticketId }: UserSelectorProps) {
+export function UserSelector({
+  selectedUserId,
+  onUserSelect,
+  ticketId,
+}: UserSelectorProps) {
   const { users } = useUsersStore();
-  const selectedUser = users.find(user => user.id === selectedUserId);
+  const selectedUser = users.find((user) => user.id === selectedUserId);
 
   return (
     <div className="flex items-center gap-2">
